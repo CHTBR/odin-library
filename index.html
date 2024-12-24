@@ -8,6 +8,32 @@
     <script src="js/script.js" defer></script>
   </head>
   <body>
-  
+
+    <button type="button" class="new-book-button">New book</button>
+    <dialog>
+      <h2>Add a new book</h2>
+      <form>
+        <p>
+          <label for="bookName">Name of the book:</label>
+          <input type="text" name="bookName" id="bookName" placeholder="The Hobbit" required>
+        </p>
+        <p>
+          <label for="bookAuthor">Name of the author:</label>
+          <input type="text" name="bookAuthor" id="bookAuthor" placeholder="J.R.R. Tolkien" required>
+        </p>
+        <p>
+          <label for="bookNumOfPages">Number of pages:</label>
+          <input type="number" name="bookNumOfPages" id="bookNumOfPages" placeholder="295" min="0">
+        </p>
+        <p>
+          <input type="checkbox" name="bookHaveRead" id="bookHaveRead">
+          <label for="bookHaveRead">Already read the book</label>
+        </p>
+        <button type="reset">Reset</button>
+        <button type="button" class="dialog-close-button">Close</button>
+        <button type="submit">Add</button>
+      </form>
+    </dialog>
+
   </body>
 </html>
