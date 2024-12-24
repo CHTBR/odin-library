@@ -20,10 +20,12 @@ function addBook(name, author, numOfPages, haveRead) {
 const body = document.body;
 
 function displayAllBooks() {
-  myLibrary.forEach(displayBook);
+  for (let i = 0; i < myLibrary.length; i++) {
+    myLibrary.forEach(displayBook, i);
+  }
 }
 
-function displayBook(book) {
+function displayBook(book, index) {
   let bookCard = document.createElement("div");
   bookCard.classList.add("book-card");
 
@@ -39,10 +41,22 @@ function displayBook(book) {
   let bookHaveRead = document.createElement("p");
   bookHaveRead.textContent = "Status: " + (book.haveRead ? "haven't read yet" : "already read");
 
+  /* Book removal managment */
+  let removeBtn = document.createElement("button");
+  removeBtn.classList.add("remove-book-button");
+  removeBtn.setAttribute("data-bookindex", index);
+  removeBtn.textContent = "Remove from library";
+
+  removeBtn.addEventListener("click", (e) => {
+    myLibrary.splice(parseInt(e.target.data), 1);
+    body.removeChild(e.target.parentNode);
+  });
+
   bookCard.appendChild(bookName);
   bookCard.appendChild(bookAuthor);
   bookCard.appendChild(bookNumOfPages);
   bookCard.appendChild(bookHaveRead);
+  bookCard.appendChild(removeBtn);
 
   body.appendChild(bookCard);
 }
@@ -69,6 +83,6 @@ closeDialogBtn.addEventListener("click", () => {
 form.addEventListener("submit", (event) => {
   event.preventDefault();
   addBook(nameInput.value, authorInput.value, pagesInput.value, haveReadInput.value);
-  displayBook(myLibrary[myLibrary.length - 1]);
+  displayBook(myLibrary[myLibrary.length - 1], myLibrary.length - 1);
   dialog.close();
 });
