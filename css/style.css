@@ -1,0 +1,83 @@
+/* Reset */
+h1, h2, p {
+  margin: 0;
+}
+
+
+/* Backgrounds */
+body {
+  background-color: lightgrey;
+}
+
+body > div {
+  background-color: white;
+}
+
+/* Backgrounds */
+body {
+  padding: 2em;
+  display: flex;
+  flex-flow: row wrap;
+  gap: 1em;
+  justify-content: space-around;
+}
+
+body > div {
+  border-radius: 10px;
+  padding: 1em;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
+/* Layout */
+body {
+  padding: 2em;
+  background-color: lightgrey;
+  display: flex;
+  flex-flow: row wrap;
+  gap: 1em;
+  justify-content: space-around;
+}
+
+body > div {
+  background-color: white;
+  border-radius: 10px;
+  padding: 1em;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  gap: 0.5em;
+}
+
+dialog {
+  width: min(500px, 80vw);
+  display: grid;
+  grid-template-rows: repeat(50px, 1fr);
+  gap: 0.5em;
+}
+
+dialog form {
+  display: grid;
+  grid-template-rows: repeat(7, 1fr);
+  gap: 0.5em;
+  align-items: center;
+}
+
+dialog form p:nth-last-of-type(n + 2) {
+  display: flex;
+  flex-flow: column nowrap;
+  align-content: center;
+}
+
+/* Buttons */
+button {
+  padding: 0.5em 1em;
+}
+
+.new-book-button {
+  position: fixed;
+  right: 2em;
+  bottom: 1em;
+  font-size: 2vmax;
+}
