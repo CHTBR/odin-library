@@ -28,6 +28,7 @@ function displayAllBooks() {
 function displayBook(book, index) {
   let bookCard = document.createElement("div");
   bookCard.classList.add("book-card");
+  bookCard.setAttribute("data-bookindex", index);
 
   let bookName = document.createElement("h2");
   bookName.textContent = book.name;
@@ -44,26 +45,12 @@ function displayBook(book, index) {
   /* Book removal managment */
   let removeBtn = document.createElement("button");
   removeBtn.classList.add("remove-book-button");
-  removeBtn.setAttribute("data-bookindex", index);
   removeBtn.textContent = "Remove from library";
-
-  removeBtn.addEventListener("click", (e) => {
-    myLibrary.splice(parseInt(e.target.dataset.bookindex), 1);
-    body.removeChild(e.target.parentNode);
-  });
 
   /* Read status managment */
   let readStatusButton = document.createElement("button");
   readStatusButton.classList.add("read-status-button");
-  readStatusButton.setAttribute("data-bookindex", index);
   readStatusButton.textContent = "Change read status";
-
-  readStatusButton.addEventListener("click", (e) => {
-    myLibrary[parseInt(e.target.dataset.bookindex)].haveRead = !myLibrary[parseInt(e.target.dataset.bookindex)].haveRead;
-    let parent = e.target.parentNode;
-    let readStatus = parent.children[3];
-    readStatus.textContent = "Status: " + (myLibrary[parseInt(e.target.dataset.bookindex)].haveRead ? "haven't read yet" : "already read");
-  });
 
   bookCard.appendChild(bookName);
   bookCard.appendChild(bookAuthor);
@@ -73,6 +60,20 @@ function displayBook(book, index) {
   bookCard.appendChild(readStatusButton);
 
   body.appendChild(bookCard);
+
+  bookCard.addEventListener("click", function(e) {
+    console.log(this);
+    switch(e.target.classList[0]) {
+      case "remove-book-button":
+        myLibrary.splice(this.dataset.bookindex, 1);
+        body.removeChild(this);
+        break;
+      case "read-status-button": 
+        myLibrary[parseInt(this.dataset.bookindex)].haveRead = !myLibrary[parseInt(this.dataset.bookindex)].haveRead;
+        let readStatus = this.children[3];
+        readStatus.textContent = "Status: " + (myLibrary[parseInt(this.dataset.bookindex)].haveRead ? "haven't read yet" : "already read");
+    }
+  });
 }
 
 
