@@ -48,8 +48,21 @@ function displayBook(book, index) {
   removeBtn.textContent = "Remove from library";
 
   removeBtn.addEventListener("click", (e) => {
-    myLibrary.splice(parseInt(e.target.data), 1);
+    myLibrary.splice(parseInt(e.target.dataset.bookindex), 1);
     body.removeChild(e.target.parentNode);
+  });
+
+  /* Read status managment */
+  let readStatusButton = document.createElement("button");
+  readStatusButton.classList.add("read-status-button");
+  readStatusButton.setAttribute("data-bookindex", index);
+  readStatusButton.textContent = "Change read status";
+
+  readStatusButton.addEventListener("click", (e) => {
+    myLibrary[parseInt(e.target.dataset.bookindex)].haveRead = !myLibrary[parseInt(e.target.dataset.bookindex)].haveRead;
+    let parent = e.target.parentNode;
+    let readStatus = parent.children[3];
+    readStatus.textContent = "Status: " + (myLibrary[parseInt(e.target.dataset.bookindex)].haveRead ? "haven't read yet" : "already read");
   });
 
   bookCard.appendChild(bookName);
@@ -57,6 +70,7 @@ function displayBook(book, index) {
   bookCard.appendChild(bookNumOfPages);
   bookCard.appendChild(bookHaveRead);
   bookCard.appendChild(removeBtn);
+  bookCard.appendChild(readStatusButton);
 
   body.appendChild(bookCard);
 }
