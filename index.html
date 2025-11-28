@@ -11,8 +11,19 @@
   <body>
     <main>
       <h1>My Library</h1>
-      <div class="book-container">
-      </div>
+      <div class="book-container"></div>
+      <button type="button" onclick="openAddBookDialog()">+ ADD BOOK</button>
     </main>
+
+    <dialog class="add-book">
+      <form onsubmit="processAddBookForm(); return false">
+        <input type="text" name="title" required>
+        <input type="text" name="author" required>
+        <input type="number" name="pages" required>
+        <input type="checkbox" name="status">
+        <button type="submit">Submit</button>
+        <button type="button" onclick="closeAddBookDialog()">Close</button>
+      </form>
+    </dialog>
   </body>
 </html>
