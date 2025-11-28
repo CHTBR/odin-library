@@ -12,6 +12,10 @@ function Book(title, author, numOfPages, haveRead) {
   this.haveRead = haveRead;
 }
 
+Book.prototype.toggleHaveRead = function () {
+  this.haveRead = !this.haveRead;
+}
+
 function addBookToLib(title, author, numOfPages, haveRead) {
   let book = new Book(title, author, numOfPages, haveRead);
   myLib.push(book);
@@ -31,7 +35,6 @@ function processAddBookForm() {
   let author = children[1].value;
   let pages = children[2].value;
   let status = children[3].checked;
-  console.log(`${title} ${author} ${pages} ${status}`);
   closeAddBookDialog();
   addBookToLib(title, author, pages, status);
   renderBooks();
@@ -57,9 +60,14 @@ function renderBooks() {
     let removeButton = document.createElement("button");
     removeButton.textContent = "Remove";
     removeButton.addEventListener("click", () => {
-      console.log('lol');
       let index = myLib.findIndex((book) => book.id == bookData.id);
       myLib.splice(index, 1);
+      renderBooks();
+    });
+    let toggleStatusButton = document.createElement("button");
+    toggleStatusButton.textContent = "Toggle status";
+    toggleStatusButton.addEventListener("click", function () {
+      bookData.toggleHaveRead();
       renderBooks();
     });
 
@@ -68,6 +76,7 @@ function renderBooks() {
     book.appendChild(pages);
     book.appendChild(status);
     book.appendChild(removeButton);
+    book.appendChild(toggleStatusButton);
 
     bookContainer.appendChild(book);
   });
