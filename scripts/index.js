@@ -54,11 +54,20 @@ function renderBooks() {
     pages.textContent = bookData.numOfPages;
     let status = document.createElement("p");
     status.textContent = bookData.haveRead ? "Already read" : "Haven\'t read yet";
+    let removeButton = document.createElement("button");
+    removeButton.textContent = "Remove";
+    removeButton.addEventListener("click", () => {
+      console.log('lol');
+      let index = myLib.findIndex((book) => book.id == bookData.id);
+      myLib.splice(index, 1);
+      renderBooks();
+    });
 
     book.appendChild(title);
     book.appendChild(author);
     book.appendChild(pages);
     book.appendChild(status);
+    book.appendChild(removeButton);
 
     bookContainer.appendChild(book);
   });
