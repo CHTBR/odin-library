@@ -1,0 +1,116 @@
+html {
+  /* START VARIABLES */
+  --main-color: #007FFF;
+  --contrast-color: #FF0800;
+  --light-bg: #91A3B0;
+  --dark-bg: #010B13;
+  /* END VARIABLES */
+  font-size: 16pt;
+}
+
+h1, h2, p, label {
+  line-height: 1.5em;
+  font-family: sans-serif;
+}
+
+/* button types */
+button {
+  border: none;
+  font-size: 1rem;
+  padding: 0.2rem 0.7rem;
+  border-radius: 0.7rem;
+}
+
+.priority-button {
+  background-color: var(--main-color);
+  color: white;
+}
+
+.danger-button {
+  background-color: var(--contrast-color);
+  color: white;
+}
+
+/* main */
+main {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 1rem;
+  padding: 1rem;
+
+  h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+  }
+
+  h2 {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+
+  .add-book-button {
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  .book-container {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 1rem;
+  }
+
+  .book-card {
+    flex: 1 0 20ch;
+    min-width: 15rem;
+    max-width: 20%;
+    padding: 1rem;
+    border-radius: 0.7rem;
+    background-color: var(--light-bg);
+  }
+
+  .book-card h2,
+  .book-card p {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .book-card .controls {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+/* Dialog - new book form */
+dialog {
+  border: none;
+  height: 70vh;
+  background-color: var(--light-bg);
+}
+
+dialog::backdrop {
+  background-color: var(--light-bg);
+}
+
+form label {
+  font-size: 1.5rem;
+}
+
+form input {
+  font-size: 1.2rem;
+}
+
+form div {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin: 1rem;
+}

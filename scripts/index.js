@@ -30,11 +30,11 @@ function closeAddBookDialog() {
 }
 
 function processAddBookForm() {
-  let children = addBookForm.children;
-  let title = children[0].value;
-  let author = children[1].value;
-  let pages = children[2].value;
-  let status = children[3].checked;
+  let inputChildren = addBookForm.querySelectorAll("input");
+  let title = inputChildren[0].value;
+  let author = inputChildren[1].value;
+  let pages = inputChildren[2].value;
+  let status = inputChildren[3].checked;
   closeAddBookDialog();
   addBookToLib(title, author, pages, status);
   renderBooks();
@@ -57,8 +57,12 @@ function renderBooks() {
     pages.textContent = bookData.numOfPages;
     let status = document.createElement("p");
     status.textContent = bookData.haveRead ? "Already read" : "Haven\'t read yet";
+
+    let controls = document.createElement("div");
+    controls.classList.add("controls");
     let removeButton = document.createElement("button");
     removeButton.textContent = "Remove";
+    removeButton.classList.add("danger-button");
     removeButton.addEventListener("click", () => {
       let index = myLib.findIndex((book) => book.id == bookData.id);
       myLib.splice(index, 1);
@@ -71,15 +75,21 @@ function renderBooks() {
       renderBooks();
     });
 
+    controls.appendChild(toggleStatusButton);
+    controls.appendChild(removeButton);
+
     book.appendChild(title);
     book.appendChild(author);
     book.appendChild(pages);
     book.appendChild(status);
-    book.appendChild(removeButton);
-    book.appendChild(toggleStatusButton);
+    book.appendChild(controls);
 
     bookContainer.appendChild(book);
   });
 }
+
+[['The fellowship of the ring', 'J.R.R. Tolkien', 432, false], ['The name of the wind', 'Patrick Rothfuss', 662, true], ['Eragon', 'Christopher Paolini', 503, true], ['Harry Potter and the Philosopher\'s stone', 'J.K. Rowling', 223, false]].forEach((el) => {
+  addBookToLib(el[0], el[1], el[2], el[3]);
+});
 
 renderBooks();
