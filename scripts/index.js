@@ -1,6 +1,7 @@
 const bookContainer = document.getElementsByClassName("book-container")[0];
 const addBookDialog = document.getElementsByClassName("add-book")[0];
 const addBookForm = addBookDialog.querySelector("form");
+const themeToggle = document.getElementsByClassName("toggle-track theme")[0];
 
 const myLib = [];
 
@@ -87,6 +88,11 @@ function renderBooks() {
     bookContainer.appendChild(book);
   });
 }
+
+themeToggle.addEventListener("click", () => {
+  themeToggle.classList.toggle("toggle-on");
+  document.documentElement.classList.toggle("light-theme");
+});
 
 [['The fellowship of the ring', 'J.R.R. Tolkien', 432, false], ['The name of the wind', 'Patrick Rothfuss', 662, true], ['Eragon', 'Christopher Paolini', 503, true], ['Harry Potter and the Philosopher\'s stone', 'J.K. Rowling', 223, false]].forEach((el) => {
   addBookToLib(el[0], el[1], el[2], el[3]);

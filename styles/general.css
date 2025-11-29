@@ -1,11 +1,82 @@
 html {
   /* START VARIABLES */
-  --main-color: #007FFF;
-  --contrast-color: #FF0800;
-  --light-bg: #91A3B0;
+  --main: #007FFF;
+  --light-bg: white;
   --dark-bg: #010B13;
+  --light-card-bg: #91A3B0;
+  --dark-card-bg: #3D4B55;
+  --main-contrast: #FF0800;
   /* END VARIABLES */
   font-size: 16pt;
+}
+
+/* Color themes */
+/* dark */
+html {
+  background-color: var(--dark-bg);
+
+  .book-card {
+    background-color: var(--dark-card-bg);
+  }
+
+  dialog {
+    background-color: var(--dark-card-bg);
+  }
+
+  dialog::backdrop {
+    background-color: var(--dark-card-bg);
+  }
+
+  h1, h2, p, label {
+    color: white;
+  }
+
+  button {
+    color: white;
+    background-color: var(--dark-bg);
+  }
+
+  .theme.toggle-track {
+    background-color: white;
+  }
+
+  .theme.toggle-track .toggle-thumb {
+    background-color: var(--dark-bg);
+  }
+}
+
+/* light */
+html.light-theme {
+  background-color: var(--light-bg);
+
+  .book-card {
+    background-color: var(--light-card-bg);
+  }
+
+  dialog {
+    background-color: var(--light-card-bg);
+  }
+
+  dialog::backdrop {
+    background-color: var(--light-card-bg);
+  }
+
+  h1, h2, p, label {
+    color: black;
+  }
+
+  button {
+    color: black;
+    background-color: var(--light-bg);
+  }
+
+  .theme.toggle-track {
+    background-color: var(--dark-bg);
+  }
+
+  .theme.toggle-track .toggle-thumb {
+    background-color: white;
+  }
 }
 
 h1, h2, p, label {
@@ -22,13 +93,44 @@ button {
 }
 
 .priority-button {
-  background-color: var(--main-color);
-  color: white;
+  background-color: var(--main) !important;
+  color: white !important;
 }
 
 .danger-button {
-  background-color: var(--contrast-color);
-  color: white;
+  background-color: var(--main-contrast) !important;
+  color: white !important;
+}
+
+/* Toggle */
+.theme.toggle-track {
+  position: absolute;
+  right: 1rem;
+  top: 2rem;
+}
+
+.toggle-track {
+  border: 3px solid black;
+  border-radius: 30px;
+  width: 90px;
+  height: 40px;
+}
+
+.toggle-track .toggle-thumb {
+  position: absolute;
+  top: 5px;
+  border: 3px solid black;
+  border-radius: 25px;
+  width: 25px;
+  height: 25px;
+}
+
+.toggle-track:not(.toggle-on) .toggle-thumb {
+  right: 5px;
+}
+
+.toggle-track.toggle-on .toggle-thumb {
+  left: 5px;
 }
 
 /* main */
@@ -70,7 +172,6 @@ main {
     max-width: 20%;
     padding: 1rem;
     border-radius: 0.7rem;
-    background-color: var(--light-bg);
   }
 
   .book-card h2,
@@ -92,11 +193,6 @@ main {
 dialog {
   border: none;
   height: 70vh;
-  background-color: var(--light-bg);
-}
-
-dialog::backdrop {
-  background-color: var(--light-bg);
 }
 
 form label {
