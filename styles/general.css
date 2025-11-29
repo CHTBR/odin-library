@@ -174,18 +174,17 @@ main {
     border-radius: 0.7rem;
   }
 
+  .book-card button {
+    display: block;
+    margin: 0.5rem 0;
+  }
+
   .book-card h2,
   .book-card p {
     width: 100%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-  }
-
-  .book-card .controls {
-    margin-top: 1rem;
-    display: flex;
-    justify-content: space-between;
   }
 }
 

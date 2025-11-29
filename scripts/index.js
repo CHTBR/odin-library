@@ -56,11 +56,7 @@ function renderBooks() {
     author.textContent = bookData.author;
     let pages = document.createElement("p");
     pages.textContent = bookData.numOfPages;
-    let status = document.createElement("p");
-    status.textContent = bookData.haveRead ? "Already read" : "Haven\'t read yet";
 
-    let controls = document.createElement("div");
-    controls.classList.add("controls");
     let removeButton = document.createElement("button");
     removeButton.textContent = "Remove";
     removeButton.classList.add("danger-button");
@@ -69,21 +65,20 @@ function renderBooks() {
       myLib.splice(index, 1);
       renderBooks();
     });
+
     let toggleStatusButton = document.createElement("button");
-    toggleStatusButton.textContent = "Toggle status";
+    toggleStatusButton.textContent = bookData.haveRead ? "Already read" : "Haven't read yet";
     toggleStatusButton.addEventListener("click", function () {
       bookData.toggleHaveRead();
+      toggleStatusButton.textContent = bookData.haveRead ? "Already read" : "Haven't read yet";
       renderBooks();
     });
-
-    controls.appendChild(toggleStatusButton);
-    controls.appendChild(removeButton);
 
     book.appendChild(title);
     book.appendChild(author);
     book.appendChild(pages);
-    book.appendChild(status);
-    book.appendChild(controls);
+    book.appendChild(toggleStatusButton);
+    book.appendChild(removeButton);
 
     bookContainer.appendChild(book);
   });
