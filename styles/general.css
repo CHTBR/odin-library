@@ -7,7 +7,13 @@ html {
   --dark-card-bg: #3D4B55;
   --main-contrast: #FF0800;
   /* END VARIABLES */
-  font-size: 12pt;
+  font-size: 10pt;
+}
+
+@media (width <= 760px) {
+  html {
+    font-size: calc(4pt + 1vw);
+  }
 }
 
 /* Color themes */
@@ -27,16 +33,16 @@ html {
     background-color: var(--dark-bg);
   }
 
-  h1, label {
+  h1, label, td, th {
     color: var(--light-bg);
-  }
-
-  input {
-    background-color: var(--light-bg);
   }
 
   h2, p {
     color: var(--dark-bg);
+  }
+
+  input {
+    background-color: var(--light-bg);
   }
 
   button {
@@ -74,7 +80,7 @@ html.light-theme {
     background-color: var(--light-bg);
   }
 
-  h1, label {
+  h1, label, td, th {
     color: var(--dark-bg);
   }
 
@@ -101,7 +107,7 @@ html.light-theme {
   }
 }
 
-h1, h2, p, label {
+h1, h2, p, label, td, tr {
   line-height: 1.5em;
   font-family: sans-serif;
 }
@@ -128,27 +134,26 @@ button {
 /* Toggle */
 .toggle-track {
   position: relative;
-  border: 3px solid var(--dark-bg);
-  border-radius: 30px;
-  width: 90px;
-  height: 40px;
+  border-radius: 3rem;
+  width: 7rem;
+  height: 3rem;
 }
 
 .toggle-track .toggle-thumb {
   position: absolute;
-  top: 5px;
+  top: 0.25rem;
   border: 3px solid var(--dark-bg);
-  border-radius: 25px;
-  width: 25px;
-  height: 25px;
+  border-radius: 2.5rem;
+  width: 2rem;
+  height: 2rem;
 }
 
 .toggle-track:not(.toggle-on) .toggle-thumb {
-  right: 5px;
+  right: 0.25rem;
 }
 
 .toggle-track.toggle-on .toggle-thumb {
-  left: 5px;
+  left: 0.25rem;
 }
 
 /* body */
@@ -180,8 +185,9 @@ main {
   display: flex;
   flex-flow: column nowrap;
   gap: 1rem;
-  padding: 0 10vw;
+  padding: 0 calc(10vw - 1rem);
 
+  /* Card layout */
   h2 {
     font-size: 2rem;
     font-weight: bold;
@@ -213,6 +219,24 @@ main {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+
+  /* Table layout */
+  table {
+    width: 100%;
+  }
+
+  th, td {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 2vw;
+    text-align: center;
+    padding-bottom: 1rem;
+  }
+
+  th {
+    font-weight: bold;
   }
 }
 
