@@ -1,13 +1,13 @@
 html {
   /* START VARIABLES */
   --main: #007FFF;
-  --light-bg: white;
+  --light-bg: #C0C0C0;
   --dark-bg: #010B13;
   --light-card-bg: #91A3B0;
   --dark-card-bg: #3D4B55;
   --main-contrast: #FF0800;
   /* END VARIABLES */
-  font-size: 16pt;
+  font-size: 12pt;
 }
 
 /* Color themes */
@@ -16,28 +16,41 @@ html {
   background-color: var(--dark-bg);
 
   .book-card {
-    background-color: var(--dark-card-bg);
+    background-color: var(--light-bg);
   }
 
   dialog {
-    background-color: var(--dark-card-bg);
+    background-color: var(--dark-bg);
   }
 
   dialog::backdrop {
-    background-color: var(--dark-card-bg);
+    background-color: var(--dark-bg);
   }
 
-  h1, h2, p, label {
-    color: white;
+  h1, label {
+    color: var(--light-bg);
+  }
+
+  input {
+    background-color: var(--light-bg);
+  }
+
+  h2, p {
+    color: var(--dark-bg);
   }
 
   button {
-    color: white;
+    color: var(--dark-bg);
+    background-color: var(--light-bg);
+  }
+
+  .book-card button {
+    color: var(--light-bg);
     background-color: var(--dark-bg);
   }
 
   .theme.toggle-track {
-    background-color: white;
+    background-color: var(--light-bg);
   }
 
   .theme.toggle-track .toggle-thumb {
@@ -50,23 +63,32 @@ html.light-theme {
   background-color: var(--light-bg);
 
   .book-card {
-    background-color: var(--light-card-bg);
+    background-color: var(--dark-bg);
   }
 
   dialog {
-    background-color: var(--light-card-bg);
+    background-color: var(--light-bg);
   }
 
   dialog::backdrop {
-    background-color: var(--light-card-bg);
+    background-color: var(--light-bg);
   }
 
-  h1, h2, p, label {
-    color: black;
+  h1, label {
+    color: var(--dark-bg);
+  }
+
+  h2, p {
+    color: var(--light-bg);
   }
 
   button {
-    color: black;
+    color: var(--light-bg);
+    background-color: var(--dark-bg);
+  }
+
+  .book-card button {
+    color: var(--dark-bg);
     background-color: var(--light-bg);
   }
 
@@ -75,7 +97,7 @@ html.light-theme {
   }
 
   .theme.toggle-track .toggle-thumb {
-    background-color: white;
+    background-color: var(--light-bg);
   }
 }
 
@@ -89,28 +111,24 @@ button {
   border: none;
   font-size: 1rem;
   padding: 0.2rem 0.7rem;
-  border-radius: 0.7rem;
+  border-radius: 50rem;
+  font-weight: bold;
 }
 
 .priority-button {
   background-color: var(--main) !important;
-  color: white !important;
+  color: var(--light-bg) !important;
 }
 
 .danger-button {
   background-color: var(--main-contrast) !important;
-  color: white !important;
+  color: var(--light-bg) !important;
 }
 
 /* Toggle */
-.theme.toggle-track {
-  position: absolute;
-  right: 1rem;
-  top: 2rem;
-}
-
 .toggle-track {
-  border: 3px solid black;
+  position: relative;
+  border: 3px solid var(--dark-bg);
   border-radius: 30px;
   width: 90px;
   height: 40px;
@@ -119,7 +137,7 @@ button {
 .toggle-track .toggle-thumb {
   position: absolute;
   top: 5px;
-  border: 3px solid black;
+  border: 3px solid var(--dark-bg);
   border-radius: 25px;
   width: 25px;
   height: 25px;
@@ -133,27 +151,40 @@ button {
   left: 5px;
 }
 
-/* main */
-main {
-  display: flex;
-  flex-flow: column nowrap;
-  gap: 1rem;
+/* body */
+body {
   padding: 1rem;
+}
+
+/* header */
+header {
+  padding: 0 calc((100vw - 50rem) / 2);
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
   h1 {
     font-size: 2.5rem;
     font-weight: bold;
   }
 
+  .controls {
+    display: flex;
+    gap: 1rem;
+  }
+}
+
+/* main */
+main {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 1rem;
+  padding: 0 10vw;
+
   h2 {
     font-size: 2rem;
     font-weight: bold;
-  }
-
-  .add-book-button {
-    position: fixed;
-    right: 1rem;
-    bottom: 1rem;
   }
 
   p {
@@ -161,15 +192,12 @@ main {
   }
 
   .book-container {
-    display: flex;
-    flex-flow: row wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
     gap: 1rem;
   }
 
   .book-card {
-    flex: 1 0 20ch;
-    min-width: 15rem;
-    max-width: 20%;
     padding: 1rem;
     border-radius: 0.7rem;
   }

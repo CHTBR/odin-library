@@ -9,13 +9,17 @@
     <script src="scripts/index.js" defer></script>
   </head>
   <body>
-    <main>
-      <div class="theme toggle-track">
-        <div class="toggle-thumb"></div>
-      </div>
+    <header>
       <h1>My Library</h1>
+      <div class="controls">
+        <button type="button" onclick="openAddBookDialog()" class="add-book-button">+ ADD BOOK</button>
+        <div class="theme toggle-track">
+          <div class="toggle-thumb"></div>
+        </div>
+      </div>
+    </header>
+    <main>
       <div class="book-container"></div>
-      <button type="button" onclick="openAddBookDialog()" class="add-book-button priority-button">+ ADD BOOK</button>
     </main>
 
     <dialog class="add-book">
@@ -37,8 +41,8 @@
           <input type="checkbox" name="status" id="book-status">
         </div>
         <div>
-          <button type="submit" class="priority-button">Submit</button>
-          <button type="button" onclick="closeAddBookDialog()">Close</button>
+          <button type="submit">Submit</button>
+          <button type="button" class="danger-button" onclick="closeAddBookDialog()">Close</button>
         </div>
       </form>
     </dialog>
